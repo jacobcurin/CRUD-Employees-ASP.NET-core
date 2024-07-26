@@ -1,0 +1,77 @@
+﻿@model RHCRUD.Models.EmpCap
+
+@{
+    ViewData["Title"] = "Agregar Empleados a Capacitación";
+}
+
+<h1>Agregar Empleados a Capacitación</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateEC" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="IdCapacitacion" value="@ViewData["IdCapacitacion"]" />
+
+            <div id="empleadoFields">
+                <div class="form-group">
+                    <label class="control-label">Empleado</label>
+                    <select name="RutEmpleado" class="form-control empleado-select">
+                        @foreach (var empleado in ViewBag.Empleados)
+                        {
+                            <option value="@empleado.Value">@empleado.Text</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fecha</label>
+                    <input name="FechaEmpCaps" class="form-control" type="date" />
+                    <span class="text-danger"></span>
+                </div>
+                <hr />
+            </div>
+
+            <button type="button" id="addEmpleado" class="btn btn-secondary">Agregar más empleados</button>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function addEmpleadoFields() {
+                var empleadoFields = `
+                            <div class="form-group">
+                                <label class="control-label">Empleado</label>
+                                <select name="RutEmpleado" class="form-control empleado-select">
+        @foreach (var empleado in ViewBag.Empleados)
+        {
+                                            <option value="@empleado.Value">@empleado.Text</option>
+        }
+                                }
+                            </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Fecha</label>
+                                <input name="FechaEmpCaps" class="form-control" type="date" />
+                                <span class="text-danger"></span>
+                            </div>
+                            <hr />
+                        `;
+                $('#empleadoFields').append(empleadoFields);
+            }
+
+            $('#addEmpleado').click(function () {
+                addEmpleadoFields();
+            });
+        });
+    </script>
+}

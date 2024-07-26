@@ -1,0 +1,106 @@
+﻿@model IEnumerable<RHCRUD.Models.EmpCap>
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+@section Estilos {
+    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" rel="stylesheet" />
+
+    <link href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css" rel="stylesheet" />
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h1>Registro de capacitaciones por empleados</h1>
+
+        <p>
+            <a class="btn btn-primary" asp-action="Create">Ingresar un nuevo registro</a>
+            <a class="btn btn-primary" asp-action="CreateEC">Ingresar registro empleado a capacitación</a>
+        </p>
+    </div>
+    <div class="card-body">
+        <table id="tb_empcap" class="display">
+            <thead>
+                <tr>
+                    <th>
+                        Nombre de la capacitación
+                    </th>
+                    <th>
+                        Nombre del colaborador
+                    </th>
+                    <th>
+                        Apellido paterno
+                    </th>
+                    <th>
+                        Apellido materno
+                    </th>
+                    <th>
+                        Fecha
+                    </th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdCapacitacionNavigation.NombreCapacitacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RutEmpleadoNavigation.NombreEmpleado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RutEmpleadoNavigation.ApPaternoEmpleado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RutEmpleadoNavigation.ApMaternoEmpleado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(ModelItem => item.FechaEmpCap)
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.IdEmpeCap">Modificar</a> |
+                            <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdEmpeCap">Detalles</a> |
+                            <a class="btn btn-dark" asp-action="Delete" asp-route-id="@item.IdEmpeCap">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tb_empcap').dataTable({
+                "language": {
+                    url: "https://cdn.datatables.net/plug-ins/2.0.3/i18n/es-ES.json"
+                },
+                dom: '<"d-flex justify-content-between"<"mr-2"B><"ml-2"f>>rtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Exportar a Excel',
+                        className: 'btn btn-success',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    }
+                ]
+            });
+
+        });
+    </script>
+}

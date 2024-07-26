@@ -1,0 +1,35 @@
+﻿@model RHCRUD.Models.Capacitacion
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles de la capacitación</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nombre de la capacitación
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombreCapacitacion)
+        </dd>
+        <dt class = "col-sm-2">
+            Descripción de la capacitación
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DescripcionCapacitacion)
+        </dd>
+        <dt class = "col-sm-2">
+            Fecha de ingreso
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaCapacitacion)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model?.IdCapacitacion">Modificar</a> |
+    <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+</div>

@@ -1,0 +1,69 @@
+﻿@model RHCRUD.Models.Empleado
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Ingresar nuevo empleado</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RutEmpleado" class="control-label">RUN del empleado</label>
+                <input asp-for="RutEmpleado" class="form-control" />
+                <span asp-validation-for="RutEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreEmpleado" class="control-label">Nombre del empleado</label>
+                <input asp-for="NombreEmpleado" class="form-control" />
+                <span asp-validation-for="NombreEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApPaternoEmpleado" class="control-label">Apellido paterno</label>
+                <input asp-for="ApPaternoEmpleado" class="form-control" />
+                <span asp-validation-for="ApPaternoEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApMaternoEmpleado" class="control-label">Apellido materno</label>
+                <input asp-for="ApMaternoEmpleado" class="form-control" />
+                <span asp-validation-for="ApMaternoEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DireccionEmpleado" class="control-label">Dirección</label>
+                <input asp-for="DireccionEmpleado" class="form-control" />
+                <span asp-validation-for="DireccionEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorreoEmpleado" class="control-label">Correo Electronico</label>
+                <input asp-for="CorreoEmpleado" class="form-control" />
+                <span asp-validation-for="CorreoEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SexoEmpleado" class="control-label">Sexo</label>
+                <input asp-for="SexoEmpleado" class="form-control" />
+                <span asp-validation-for="SexoEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EstadoCivilEmpleado" class="control-label">Estado civil</label>
+                <input asp-for="EstadoCivilEmpleado" class="form-control" />
+                <span asp-validation-for="EstadoCivilEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+   
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

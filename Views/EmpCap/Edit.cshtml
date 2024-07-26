@@ -1,0 +1,44 @@
+﻿@model RHCRUD.Models.EmpCap
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Modificar registro</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdEmpeCap" />
+            <div class="form-group">
+                <label asp-for="RutEmpleado" class="control-label">Nombre del empleado</label>
+                <select asp-for="RutEmpleado" class="form-control" asp-items="ViewBag.RutEmpleado"></select>
+                <span asp-validation-for="RutEmpleado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCapacitacion" class="control-label">Nombre de la capacitación</label>
+                <select asp-for="IdCapacitacion" class="form-control" asp-items="ViewBag.IdCapacitacion"></select>
+                <span asp-validation-for="IdCapacitacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEmpCap" class="control-label">Fecha de la capacitación</label>
+                <input asp-for="FechaEmpCap" class="form-control" type="date" />
+                <span asp-validation-for="FechaEmpCap" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

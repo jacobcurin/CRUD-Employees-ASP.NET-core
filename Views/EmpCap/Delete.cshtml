@@ -1,0 +1,43 @@
+﻿@model RHCRUD.Models.EmpCap
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar registro</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nombre de la capacitación
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdCapacitacionNavigation.NombreCapacitacion)
+        </dd>
+        <dt class = "col-sm-2">
+            Nombre del empleado
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RutEmpleadoNavigation.NombreEmpleado)
+        </dd>
+        <dt class="col-sm-2">
+            Apellido paterno
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RutEmpleadoNavigation.ApPaternoEmpleado)
+        </dd>
+        <dt class="col-sm-2">
+            Apellido materno
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RutEmpleadoNavigation.ApMaternoEmpleado)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdEmpeCap" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+    </form>
+</div>

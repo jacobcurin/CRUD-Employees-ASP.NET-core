@@ -1,0 +1,42 @@
+﻿@model RHCRUD.Models.Capacitacion
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Ingresar nueva capacitación</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NombreCapacitacion" class="control-label">Nombre de la capacitación</label>
+                <input asp-for="NombreCapacitacion" class="form-control" />
+                <span asp-validation-for="NombreCapacitacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescripcionCapacitacion" class="control-label">Descripción de la capacitación</label>
+                <input asp-for="DescripcionCapacitacion" class="form-control" />
+                <span asp-validation-for="DescripcionCapacitacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaCapacitacion" class="control-label">Fecha de ingreso</label>
+                <input asp-for="FechaCapacitacion" class="form-control" type="date" />
+                <span asp-validation-for="FechaCapacitacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,59 @@
+﻿@model RHCRUD.Models.Empleado
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles del empleado</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nombre(s)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombreEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Apellido paterno
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApPaternoEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Apellido materno
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApMaternoEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Dirección
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DireccionEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Correo electronico
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CorreoEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Sexo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SexoEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Estado civil
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EstadoCivilEmpleado)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.RutEmpleado">Modificar</a> |
+    <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+</div>

@@ -1,0 +1,155 @@
+﻿@model RHCRUD.Models.EmpCap
+
+@{
+    ViewData["Title"] = "Create";
+}
+<link href="~/css/create.css" rel="stylesheet" />
+<h1>Ingresar nuevo registro de capacitación</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" id="capacitacionForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RutEmpleado" class="control-label">Nombre del colaborador</label>
+                <select asp-for="RutEmpleado" class="form-control" asp-items="ViewBag.RutEmpleado"></select>
+            </div>
+
+            <div id="capacitacionFields">
+                <div class="form-group">
+                    <label class="control-label">Capacitación</label>
+                    <select name="IdCapacitacion" class="form-control capacitacion-select">
+                        <!-- Las opciones se cargarán aquí dinámicamente -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fecha</label>
+                    <input name="FechaEmpCaps" class="form-control" type="date" />
+                    <span class="text-danger"></span>
+                </div>
+                <hr />
+            </div>
+
+            <button type="button" id="addCapacitacion" class="btn btn-secondary">Agregar más capacitaciones</button>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function loadCapacitaciones() {
+                return $.ajax({
+                    url: '@Url.Action("GetCapacitaciones", "EmpCap")',
+                    type: 'GET',
+                    dataType: 'json'
+                });
+            }
+
+            function populateCapacitacionSelect(selectElement, capacitaciones) {
+                selectElement.empty(); // Limpia las opciones actuales
+                capacitaciones.forEach(function (cap) {
+                    selectElement.append(new Option(cap.nombreCapacitacion, cap.idCapacitacion));
+                });
+            }
+
+            function addCapacitacionFields(capacitaciones) {
+                var capacitacionFields = `
+                            <div class="form-group">
+                                <label class="control-label">Capacitación</label>
+                                <select name="IdCapacitacion" class="form-control capacitacion-select">
+                                    ${capacitaciones.map(cap => `<option value="${cap.idCapacitacion}">${cap.nombreCapacitacion}</option>`).join('')}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Fecha</label>
+                                <input name="FechaEmpCaps" class="form-control" type="date" />
+                                <span class="text-danger"></span>
+                            </div>
+                            <hr />
+                        `;
+                $('#capacitacionFields').append(capacitacionFields);
+            }
+
+            $('#addCapacitacion').click(function () {
+                loadCapacitaciones().done(function (data) {
+                    addCapacitacionFields(data);
+                }).fail(function () {
+                    alert('Error al cargar las capacitaciones');
+                });
+            });
+
+            // Carga inicial para el primer conjunto de campos
+            loadCapacitaciones().done(function (data) {
+                populateCapacitacionSelect($('.capacitacion-select').first(), data);
+            }).fail(function () {
+                alert('Error al cargar las capacitaciones');
+            });
+        });
+    </script>
+}
+
+
+@*  @model RHCRUD.Models.EmpCap
+
+@{
+    ViewData["Title"] = "Create";
+}
+<link href="~/css/create.css" rel="stylesheet" />
+<h1>Ingresar nuevo registro de capacitación</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RutEmpleado" class="control-label">Nombre del colaborador</label>
+                <select asp-for="RutEmpleado" class ="form-control" asp-items="ViewBag.RutEmpleado"></select>
+            </div>
+        
+             <div class="form-group">
+                <label asp-for="IdCapacitacion" class="control-label">Nombre de la capacitacíon</label>
+                <select asp-for="IdCapacitacion" class ="form-control" asp-items="ViewBag.IdCapacitacion"></select>
+            </div> 
+            @for (int i = 0; i < 5; i++)  <!-- Cambia 5 por el número de capacitaciones que desees --> 
+            {
+                <div class="form-group">
+                    <label class="control-label">Capacitación</label>
+                    <select name="IdCapacitacion" class="form-control" asp-items="ViewBag.Capacitaciones"></select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fecha</label>
+                    <input name="FechaEmpCaps" class="form-control" type="date" /> 
+                    <span class="text-danger"></span>
+                </div>
+
+                <hr />
+            }
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ *@

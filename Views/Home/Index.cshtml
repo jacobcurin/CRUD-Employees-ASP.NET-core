@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Gestión de Colaboradores</h1>
+    
+</div>
+<div class="container-img">
+    <img class="img-index" src="~/img/gestion.png" alt="Alternate Text" />
+</div>
+<div class="buttons-index">
+    <div class="btn btn-dark">
+        <a class="nav-link text-white" asp-area="" asp-controller="Empleados" asp-action="Index">Colaboradores</a>
+    </div>
+    <div class="btn btn-dark">
+        <a class="nav-link text-white" asp-area="" asp-controller="Capacitacion" asp-action="Index">Capacitaciones</a>
+    </div>
+    <div class="btn btn-dark">
+        <a class="nav-link text-white" asp-area="" asp-controller="EmpCap" asp-action="Index">Capacitaciones por colaboradores</a>
+    </div>
+</div>

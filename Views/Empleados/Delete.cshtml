@@ -1,0 +1,103 @@
+﻿@model RHCRUD.Models.Empleado
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h1>Eliminar empleado</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Nombre del empleado</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.NombreEmpleado)</dd>
+        <dt class="col-sm-2">Apellido paterno</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ApPaternoEmpleado)</dd>
+        <dt class="col-sm-2">Apellido materno</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ApMaternoEmpleado)</dd>
+        <dt class="col-sm-2">Dirección</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.DireccionEmpleado)</dd>
+        <dt class="col-sm-2">Correo electronico</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.CorreoEmpleado)</dd>
+        <dt class="col-sm-2">Sexo</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.SexoEmpleado)</dd>
+        <dt class="col-sm-2">Estado Civil</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.EstadoCivilEmpleado)</dd>
+    </dl>
+    <form asp-action="Delete" id="deleteForm" onsubmit="return confirmDelete()">
+        <input type="hidden" asp-for="RutEmpleado" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function confirmDelete() {
+            return confirm("¿Estás seguro(a) de eliminar a este colaborador(a)? Al eliminar del sistema a este colaborador(a) se eliminarán todas las capacitaciones asociadas.");
+        }
+    </script>
+}
+
+
+@* @model RHCRUD.Models.Empleado
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar empleado</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nombre del empleado
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombreEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Apellido paterno
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApPaternoEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Apellido materno
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApMaternoEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Dirección
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DireccionEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Correo electronico
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CorreoEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Sexo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SexoEmpleado)
+        </dd>
+        <dt class = "col-sm-2">
+            Estado Civil
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EstadoCivilEmpleado)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="RutEmpleado" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        <a class="btn btn-primary" asp-action="Index">Volver a la lista</a>
+    </form>
+<div/>
+  *@
